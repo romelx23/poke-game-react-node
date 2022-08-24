@@ -1,57 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="68561835131-7ma7dur1rpdntp0fi1ea6lvu911ecbhn.apps.googleusercontent.com">
-    <title>Google Signin</title>
-</head>
-<body>
-    <h1>Google Signin</h1>
-    <hr>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <a href="#" onclick="signOut();">Sign out</a>
-
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script>
-        console.log(window.location.hostname.includes('localhost'))
-        
-        var url=( window.location.hostname.includes('localhost')
-                ? 'http://localhost:8080/api/auth/google'
-                : 'https://rest-server-cafe-romel.herokuapp.com/api/auth/google' );
-        
-        function onSignIn(googleUser) {
-        const profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log(id_token)
-
-        const data={
-            id_token,
-        };
-
-        fetch(url,{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify(data)
-        })
-        .then(res=>res.json())
-        .then(data=>console.log(data))
-        .catch(console.log)
-        }
-    </script>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://media.discordapp.net/attachments/730810037693579304/1006731958333751387/unknown.png?width=677&height=676" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokeGame</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Montserrat&family=Oleo+Script+Swash+Caps&family=Pacifico&family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="/assets/index.f6a012c9.js"></script>
+    <link rel="stylesheet" href="/assets/index.d6549f8d.css">
+  </head>
+  <body>
+    <div id="root"></div>
     
-    <script>
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-        });
-      }
-    </script>
-</body>
+  </body>
 </html>
