@@ -1,4 +1,4 @@
-#Squeleton Node
+#Pokemon Game
 
 Para Instalar dependencias:
 
